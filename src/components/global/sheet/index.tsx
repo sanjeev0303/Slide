@@ -13,13 +13,17 @@ type SheetProps = {
     trigger: React.ReactNode
     children: React.ReactNode
     className?: string
+    side: 'left' | 'right'
 }
 
-const Sheet = ({ trigger, children, className }: SheetProps) => {
+const Sheet = ({ trigger, children, className, side }: SheetProps) => {
   return (
     <ShadcnSheet>
         <SheetTrigger className={className}>{trigger}</SheetTrigger>
-        <SheetContent>{ children }</SheetContent>
+        <SheetContent
+        side={side}
+        className='p-0'
+        >{ children }</SheetContent>
     </ShadcnSheet>
   )
 }
