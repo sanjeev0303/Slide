@@ -14,7 +14,8 @@ import SubscriptionPlan from "../subscription-plan";
 import UpgradeCard from "../sidebar/upgrade";
 import { LogoSmall } from "@/svgs/logo-small";
 import CreateAutomation from "../create-automation";
-import Search from "../search";
+import Search from "./search";
+import Notification from "./notification";
 
 type NavbarProps = {
   slug: string;
@@ -61,10 +62,11 @@ const Navbar = ({ slug }: NavbarProps) => {
               </div>
             </Sheet>
           </span>
-          {/* search button */}
+          {/* search button, Create Automation, notification button */}
 
           <Search />
           <CreateAutomation />
+          <Notification />
         </div>
       </div>
     )
