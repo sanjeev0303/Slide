@@ -8,6 +8,8 @@ import { Separator } from "@/components/ui/separator";
 import { HelpDuoToneWhite } from "@/icons";
 import ClerkAuthState from "../clerk-auth-state";
 import { UserButton } from "@clerk/nextjs";
+import SubscriptionPlan from "../subscription-plan";
+import UpgradeCard from "./upgrade";
 
 type SidebarProps = {
   slug: string;
@@ -41,6 +43,11 @@ const Sidebar = ({ slug }: SidebarProps) => {
             <HelpDuoToneWhite />
             <p className="text-[#9B9CA0]">Help</p>
         </div>
+        <SubscriptionPlan type="FREE">
+            <div className="flex-1 flex flex-col justify-end">
+                <UpgradeCard />
+            </div>
+        </SubscriptionPlan>
       </div>
     </div>
   );
