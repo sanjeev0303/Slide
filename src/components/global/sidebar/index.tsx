@@ -4,6 +4,10 @@ import { usePath } from "@/hooks/user-nav";
 import { LogoSmall } from "@/svgs/logo-small";
 import React from "react";
 import Items from "./items";
+import { Separator } from "@/components/ui/separator";
+import { HelpDuoToneWhite } from "@/icons";
+import ClerkAuthState from "../clerk-auth-state";
+import { UserButton } from "@clerk/nextjs";
 
 type SidebarProps = {
   slug: string;
@@ -21,6 +25,21 @@ const Sidebar = ({ slug }: SidebarProps) => {
 
         <div className="flex flex-col py-3">
           <Items page={page} slug={slug} />
+        </div>
+        <div className="px-3">
+            <Separator
+            orientation="horizontal"
+            className="bg-[#333336]"
+            />
+        </div>
+        <div className="px-3 flex gap-x-3">
+            {/* <ClerkAuthState /> */}
+            <UserButton />
+        <p className="text-[#9B9CA0]">Profile</p>
+        </div>
+        <div className="px-3 flex gap-x-3">
+            <HelpDuoToneWhite />
+            <p className="text-[#9B9CA0]">Help</p>
         </div>
       </div>
     </div>
