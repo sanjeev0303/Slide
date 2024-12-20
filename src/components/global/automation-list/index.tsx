@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
 import GradientButton from "../gradient-button";
+import { Button } from "@/components/ui/button";
 
 type Props = {};
 
@@ -54,12 +55,17 @@ const AutomationList = (props: Props) => {
             {/* WIP: Attach real date */}
             December 20th 2024
           </p>
+
+          {/* WIP: Render the button based on the listener */}
           <GradientButton
             type="BUTTON"
             className="w-full bg-background-80 text-white hover:bg-background-80"
           >
             Smart AI
           </GradientButton>
+          <Button className="bg-background-80 hover:bg-background-80 text-white">
+            Standard
+          </Button>
         </div>
       </Link>
     </div>
