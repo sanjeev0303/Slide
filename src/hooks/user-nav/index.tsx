@@ -6,5 +6,6 @@ export const usePath = () => {
   let page = path[path.length - 1];
   return {
     page,
+    pathname
   };
 };
