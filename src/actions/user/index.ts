@@ -20,6 +20,19 @@ export const onBoardUser = async () => {
 
     try {
         const found  = await findUser(user.id)
+        if(found) {
+            if (found.integrations.length > 0) {
+                const today = new Date()
+                const time_left = found.integrations[0].expiresAt?.getTime()! - today.getTime()
+
+                const days = Math.round(time_left / (1000 * 3600 * 24))
+
+                if (days < 5) {
+                    console.log("refresh");
+                    
+                }
+            }
+        }
     } catch (error) {
 
     }
