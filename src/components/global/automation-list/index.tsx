@@ -1,7 +1,7 @@
 "use client";
 
 import { usePath } from "@/hooks/user-nav";
-import { cn } from "@/lib/utils";
+import { cn, getMonth } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
 import GradientButton from "../gradient-button";
@@ -22,7 +22,7 @@ const AutomationList = (props: Props) => {
   if (data?.status !== 200 || data.data.length <= 0) {
     return (
       <div className="h-[70vh] flex justify-center items-center flex-col gap-y-3">
-        <h3 className="text-lg text-gray-400">NO Automations Created</h3>
+        <h3 className="text-lg text-gray-400">No Automations</h3>
         <CreateAutomation />
       </div>
     );
@@ -68,19 +68,27 @@ const AutomationList = (props: Props) => {
           </div>
           <div className="flex flex-col justify-between">
             <p className="capitalize text-sm font-light text-[#9B9CA0]">
-              
+              {getMonth(automation.createdAt.getUTCMonth() + 1)}{" "}
+              {automation.createdAt.getUTCDate() === 1
+                ? `${automation.createdAt.getUTCDate()}st`
+                : `${automation.createdAt.getUTCDate()}th`}{" "}
+              {automation.createdAt.getUTCFullYear()}
             </p>
 
-            {/* WIP: Render the button based on the listener */}
-            <GradientButton
-              type="BUTTON"
-              className="w-full bg-background-80 text-white hover:bg-background-80"
-            >
-              Smart AI
-            </GradientButton>
-            <Button className="bg-background-80 hover:bg-background-80 text-white">
-              Standard
-            </Button>
+            {automation.listener?.listener === "SMARTAI" ? (
+                 <GradientButton
+                 type="BUTTON"
+                 className="w-full bg-background-80 text-white hover:bg-background-80"
+               >
+                 Smart AI
+               </GradientButton>
+            ) : (
+                <Button className="bg-background-80 hover:bg-background-80 text-white">
+                Standard
+              </Button>
+            )}
+
+
           </div>
         </Link>
       ))}

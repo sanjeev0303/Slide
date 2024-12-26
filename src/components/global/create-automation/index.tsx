@@ -9,6 +9,8 @@ const CreateAutomation = (props: Props) => {
 
     // WIP: Create the automaiton in the database using mutate
 
+    const {} = useCreateAutomation()
+
   return (
     <Button className='lg:px-10 py-6 bg-gradient-to-br hover:opacity-80 text-white rounded-full from-[#3352CC] to-[#1C2D70] font-medium'>
         <Loader state={false} className=''>
