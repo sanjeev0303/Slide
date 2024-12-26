@@ -1,5 +1,5 @@
 
-import { HydrationBoundary, QueryClient } from "@tanstack/react-query"
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query"
 import Navbar from "@/components/global/navbar";
 import Sidebar from "@/components/global/sidebar";
 import React from "react";
@@ -22,7 +22,7 @@ const SlugLayout = async ({ children, params }: SlugLayoutProps) => {
 
 
   return (
-   <HydrationBoundary>
+   <HydrationBoundary state={dehydrate(query)} >
      <div className="p-3">
       <Sidebar slug={params.slug} />
       <div className="lg:ml-[250px] lg:pl-10 lg:py-5 flex flex-col overflow-auto">
