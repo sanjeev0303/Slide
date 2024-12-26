@@ -1,7 +1,7 @@
 "use server";
 
 import { onCurrentUser } from "../user";
-import { CreateAutomation } from "./queries";
+import { CreateAutomation, getAutomations } from "./queries";
 
 export const createAutomaions = async () => {
   const user = await onCurrentUser();

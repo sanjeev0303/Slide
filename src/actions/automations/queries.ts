@@ -17,7 +17,7 @@ export const CreateAutomation = async (clerkId: string) => {
 }
 
 
-export const getAutomaitons  = async (clerkId: string) => {
+export const getAutomations  = async (clerkId: string) => {
     return await client.user.findUnique({
         where: {
             clerkId
