@@ -3,7 +3,7 @@
 import { onCurrentUser } from "../user";
 import { CreateAutomation } from "./queries";
 
-export const getAllAutomaions = async () => {
+export const createAutomaions = async () => {
   const user = await onCurrentUser();
 
   try {
@@ -22,7 +22,18 @@ export const getAllAutomaions = async () => {
   } catch (error) {
     return {
       status: 500,
-      data: "Internal server error"
+      data: "Internal server error",
     };
   }
 };
+
+
+export const getAllAutomaions = async () => {
+    const user = await onCurrentUser()
+
+    try {
+        const automations = await getAutomations(user.id)
+    } catch (error) {
+
+    }
+}
