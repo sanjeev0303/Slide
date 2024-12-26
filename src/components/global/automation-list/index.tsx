@@ -15,6 +15,8 @@ const AutomationList = (props: Props) => {
   // get the automation list data
   const { data } = useQueryAutomations();
 
+  const {} = useMutationDataState(["create-automation"])
+
   const { pathname } = usePath();
   //   console.log(data);
 
