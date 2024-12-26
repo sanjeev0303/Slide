@@ -1,17 +1,28 @@
-"use server"
+"use server";
 
-import { onCurrentUser } from "../user"
-import { CreateAutomation } from "./queries"
+import { onCurrentUser } from "../user";
+import { CreateAutomation } from "./queries";
 
+export const getAllAutomaions = async () => {
+  const user = await onCurrentUser();
 
-export const getAllAutomaions = async() => {
-    const user = await onCurrentUser()
+  try {
+    const create = await CreateAutomation(user.id);
 
-    try {
+    if (create)
+      return {
+        status: 200,
+        data: "Automation created",
+      };
 
-        const create = await CreateAutomation(user.id)
-
-    } catch (error) {
-
-    }
-}
+    return {
+      status: 404,
+      data: "Oop! something went wrong",
+    };
+  } catch (error) {
+    return {
+      status: 500,
+      data: "Internal server error"
+    };
+  }
+};
