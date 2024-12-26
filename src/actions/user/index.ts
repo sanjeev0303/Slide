@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { createUser, findUser } from "./queries";
 import { refreshToken } from "@/lib/fetch";
 import { updateIntegration } from "../integration";
+import { truncate } from "fs";
 
 export const onCurrentUser = async () => {
   const user = await currentUser();
@@ -73,3 +74,20 @@ export const onBoardUser = async () => {
 
   }
 };
+
+
+
+export const onUserInfo = async () => {
+    const user = await onCurrentUser()
+
+    try {
+        const profile = await findUser(user.id)
+        if(profile) return { status: 200, data: profile}
+
+        return { status: 404}
+    } catch (error) {
+        return {
+            status: 500
+        }
+    }
+}
