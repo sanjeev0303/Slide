@@ -12,4 +12,6 @@ export const useCreateAutomation = () => {
         () => createAutomaions(),
         'user-automations',
     )
+
+    return {mutate, isPending}
 }
