@@ -1,9 +1,9 @@
 
-import { QueryClient } from "@tanstack/react-query"
+import { HydrationBoundary, QueryClient } from "@tanstack/react-query"
 import Navbar from "@/components/global/navbar";
 import Sidebar from "@/components/global/sidebar";
 import React from "react";
-import { PrefetchUserProfile } from "@/react-query/prefetch";
+import { PrefetchUserAutomations, PrefetchUserProfile } from "@/react-query/prefetch";
 
 type SlugLayoutProps = {
   children: React.ReactNode;
@@ -22,13 +22,15 @@ const SlugLayout = async ({ children, params }: SlugLayoutProps) => {
 
 
   return (
-    <div className="p-3">
+   <HydrationBoundary>
+     <div className="p-3">
       <Sidebar slug={params.slug} />
       <div className="lg:ml-[250px] lg:pl-10 lg:py-5 flex flex-col overflow-auto">
         <Navbar slug={params.slug} />
         {children}
       </div>
     </div>
+   </HydrationBoundary>
   );
 };
 
