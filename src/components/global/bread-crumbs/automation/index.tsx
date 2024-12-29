@@ -5,6 +5,7 @@ import { ChevronRight, PencilIcon } from "lucide-react";
 import React from "react";
 import ActivateAutomationButton from "../../activate-automation-button";
 import { useQueryAutomation } from "@/hooks/user-queries";
+import { useEditAutomation } from "@/hooks/create-automaion";
 
 type AutomationsBreadCrumbProps = {
   id: string;
