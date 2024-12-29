@@ -3,6 +3,7 @@ import { z } from "zod";
 import {
   createAutomations,
   saveListener,
+  saveTrigger,
   updateAutomationName,
 } from "@/actions/automations";
 import { useMutationData } from "../mutation-data";
@@ -108,7 +109,7 @@ export const useTriggers = (id: string) => {
     dispatch(TRIGGER({ trigger: { type } }));
 
   const { isPending, mutate } = useMutationData(['add-trigger'],
-    (data: { type: string[] }) => saveTrigger(),
+    (data: { type: string[] }) => saveTrigger(id, data.type),
   )
 
   const onSaveTrigger = ()=> mutate({ types })

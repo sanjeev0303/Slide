@@ -93,6 +93,9 @@ export const saveListener = async (
     try {
 
         const create = await addTrigger(automationId, trigger)
+        if (create) return { status: 200, data: 'Trigger saved', res: create };
+
+        return { status: 404, data: 'Cannot save trigger' };
 
     } catch (error) {
         return { status: 500, data: 'Oops! something went wrong' }
