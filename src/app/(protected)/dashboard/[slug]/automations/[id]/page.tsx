@@ -14,7 +14,7 @@ type Props = {
   };
 };
 
-export async function generateMetadata({
+ async function generateMetadata({
   params,
 }: {
   params: {
