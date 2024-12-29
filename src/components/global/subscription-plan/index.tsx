@@ -8,12 +8,14 @@ type SubscriptionPlanProps = {
 
 const SubscriptionPlan = ({ children, type }: SubscriptionPlanProps) => {
 
-    const {} = useQueryUser()
+    const {
+        data
+    } = useQueryUser()
 
     // WIP: Return subscription of user
 
   return (
-   children
+    data?.data?.subscription?.plan === type && children
   )
 }
 

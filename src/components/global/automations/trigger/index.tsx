@@ -34,22 +34,22 @@ const Trigger = ({ id }: TriggerProps) => {
             or
           </p>
           <Separator
-          orientation="horizontal"
-          className="border-muted border-[1px]"
+            orientation="horizontal"
+            className="border-muted border-[1px]"
           />
         </div>
         <ActiveTrigger
-        type = {"MESSAGE"}
-        keywords = {[
+          type={"MESSAGE"}
+          keywords={[
             {
-                id: "asdkfjaeriandsfkdf",
-                word: "Meplease",
-                automationId: id,
+              id: "asdkfjaeriandsfkdf",
+              word: "Meplease",
+              automationId: id,
             },
-        ]}
+          ]}
         />
       </>
-      <ThenAction />
+      <ThenAction id={id} />
     </div>
   );
 };
