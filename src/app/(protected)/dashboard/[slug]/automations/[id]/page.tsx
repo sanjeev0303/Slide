@@ -2,6 +2,7 @@ import AutomationsBreadCrumb from "@/components/global/bread-crumbs/automation";
 import { Warning } from "@/icons";
 import React from "react";
 import Trigger from "@/components/global/automations/trigger";
+import { getAutomationInfo } from "@/actions/automations";
 
 type Props = {
   params: {
