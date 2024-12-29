@@ -1,6 +1,6 @@
 // import { useMutation } from "@tanstack/react-query"
 
-import { createAutomations } from "@/actions/automations";
+import { createAutomations, updateAutomationName } from "@/actions/automations";
 import { useMutationData } from "../mutation-data";
 import { useRef, useState } from "react";
 

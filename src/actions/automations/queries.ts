@@ -61,7 +61,7 @@ export const findAutomation = async (id: string) => {
 export const updateAutomation = async(id: string,
     update: {
         name?: string,
-        active: boolean,
+        active?: boolean,
     }
 ) => {
     return await client.automation.update({
