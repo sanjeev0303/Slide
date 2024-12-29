@@ -37,7 +37,7 @@ const AutomationList = (props: Props) => {
     )
   }
 
-  console.log('automation-list optimisticUiData: ', optimisticUiData);
+//   console.log('automation-list optimisticUiData: ', optimisticUiData);
 
 
   return (
