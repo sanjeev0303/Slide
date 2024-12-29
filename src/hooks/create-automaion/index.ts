@@ -1,17 +1,14 @@
 // import { useMutation } from "@tanstack/react-query"
 
-import { createAutomaions } from "@/actions/automations"
+import { createAutomations } from "@/actions/automations"
 import { useMutationData } from "../mutation-data"
 
-export const useCreateAutomation = () => {
-    const {
-        mutate,
-        isPending
-    } = useMutationData(
-        ['create-mutation'],
-        () => createAutomaions(),
-        'user-automations',
+export const useCreateAutomation = (id?: string) => {
+    const { isPending, mutate } = useMutationData(
+      ['create-automation'],
+      () => createAutomations(id),
+      'user-automations'
     )
 
-    return {mutate, isPending}
+    return { isPending, mutate }
 }
