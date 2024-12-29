@@ -2,6 +2,7 @@ import { PencilDuoToneBlack } from "@/icons";
 import { ChevronRight, PencilIcon } from "lucide-react";
 import React from "react";
 import ActivateAutomationButton from "../../activate-automation-button";
+import { useQueryAutomation } from "@/hooks/user-queries";
 
 type AutomationsBreadCrumbProps = {
   id: string;
@@ -9,6 +10,7 @@ type AutomationsBreadCrumbProps = {
 
 const AutomationsBreadCrumb = ({ id }: AutomationsBreadCrumbProps) => {
   // WIP: get the Automation data
+  const {} = useQueryAutomation(id)
 
   return (
     <div className="rounded-full w-full p-5 bg-[#18181B1A] flex justify-between items-center">
