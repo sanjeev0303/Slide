@@ -1,5 +1,8 @@
+"use clietn"
+
 import { useListener } from '@/hooks/create-automaion'
 import React from 'react'
+import TriggerButton from '../tirgger-button'
 
 type ThenActionProps = {
     id: string
@@ -7,10 +10,16 @@ type ThenActionProps = {
 
 const ThenAction = ({ id }: ThenActionProps) => {
 
-    const {  } = useListener(id)
+    const {
+        onSetListener,
+        register,
+        onFormSubmit,
+        listener,
+        isPending
+     } = useListener(id)
 
   return (
-    <div>ThenAction</div>
+    <TriggerButton label="THEN" >child</TriggerButton>
   )
 }
 
