@@ -110,7 +110,15 @@ export const useTriggers = (id: string) => {
 
   const { isPending, mutate } = useMutationData(['add-trigger'],
     (data: { type: string[] }) => saveTrigger(id, data.type),
+    'automation-info'
   )
 
   const onSaveTrigger = ()=> mutate({ types })
+
+  return {
+    types,
+    onSetTrigger,
+    onSaveTrigger,
+    isPending,
+  }
 };

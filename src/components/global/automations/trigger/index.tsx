@@ -8,7 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import ThenAction from "../then/then-action";
 import TriggerButton from "../tirgger-button";
 import { AUTOMATION_TRIGGERS } from "@/constants/automation";
-import { useTrigger, useTriggers } from "@/hooks/create-automaion";
+import { useTriggers } from "@/hooks/create-automaion";
 
 type TriggerProps = {
   id: string;
@@ -17,7 +17,12 @@ type TriggerProps = {
 const Trigger = ({ id }: TriggerProps) => {
   const { data } = useQueryAutomation(id);
 
-  const {} = useTriggers(id)
+  const {
+    types,
+    onSetTrigger,
+    onSaveTrigger,
+    isPending,
+  } = useTriggers(id)
 
   if (
     data?.data &&
