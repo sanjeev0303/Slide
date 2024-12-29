@@ -78,6 +78,18 @@ export const useListener = (id: string) => {
     "automation-info"
   );
 
-  const {} = useZodForm()
+  const { register, errors, onFormSubmit, watch, reset } = useZodForm(
+    promptSchema,
+    mutate
+  );
 
+  const onSetListener = (type: 'SMARTAI' | 'MESSAGE') => setListener(type)
+
+  return {
+    onSetListener,
+    register,
+    onFormSubmit,
+    listener,
+    isPending
+  }
 };
