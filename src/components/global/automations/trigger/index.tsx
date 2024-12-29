@@ -5,6 +5,7 @@ import React from "react";
 import ActiveTrigger from "./active";
 import { stringify } from "querystring";
 import { Separator } from "@/components/ui/separator";
+import ThenAction from "../then/then-action";
 
 type TriggerProps = {
   id: string;
@@ -48,6 +49,7 @@ const Trigger = ({ id }: TriggerProps) => {
         ]}
         />
       </>
+      <ThenAction />
     </div>
   );
 };

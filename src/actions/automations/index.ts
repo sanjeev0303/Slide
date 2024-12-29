@@ -2,6 +2,7 @@
 
 import { onCurrentUser } from "../user";
 import {
+    addListener,
   createAutomation,
   findAutomation,
   getAutomations,
@@ -67,3 +68,22 @@ export const updateAutomationName = async (
     return { status: 500, data: "Oops! something went wrong" };
   }
 };
+
+
+export const useListener = async (
+    automationId: string,
+    listener: 'SMARTAI' | 'MESSAGE',
+    prompt: string,
+    reply?: string
+) => {
+
+    await onCurrentUser()
+
+    try {
+
+    const create = await addListener(automationId, listener, prompt, reply)
+
+    } catch (error) {
+        return { status: 500, data: "Internal server error" }
+    }
+}
