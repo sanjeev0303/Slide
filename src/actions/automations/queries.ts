@@ -57,43 +57,42 @@ export const findAutomation = async (id: string) => {
   });
 };
 
-
-export const updateAutomation = async(id: string,
-    update: {
-        name?: string,
-        active?: boolean,
-    }
+export const updateAutomation = async (
+  id: string,
+  update: {
+    name?: string;
+    active?: boolean;
+  }
 ) => {
-    return await client.automation.update({
-        where: {
-            id,
-        },
-        data: {
-            name: update.name,
-            active: update.active
-        }
-    })
-}
-
-
-export const addListener = async (
-    automationId: string,
-    listener: 'SMARTAI' | 'MESSAGE',
-    prompt: string,
-    reply?: string
-) => {
-   await client.automation.update({
+  return await client.automation.update({
     where: {
-        id: automationId,
+      id,
     },
     data: {
-        listener: {
-            create: {
-                listener,
-                prompt,
-                commentReply: reply
-            }
-        }
-    }
-   })
-}
+      name: update.name,
+      active: update.active,
+    },
+  });
+};
+
+export const addListener = async (
+  automationId: string,
+  listener: "SMARTAI" | "MESSAGE",
+  prompt: string,
+  reply?: string
+) => {
+  await client.automation.update({
+    where: {
+      id: automationId,
+    },
+    data: {
+      listener: {
+        create: {
+          listener,
+          prompt,
+          commentReply: reply,
+        },
+      },
+    },
+  });
+};

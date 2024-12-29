@@ -70,20 +70,18 @@ export const updateAutomationName = async (
 };
 
 
-export const useListener = async (
-    automationId: string,
+export const saveListener = async (
+    autmationId: string,
     listener: 'SMARTAI' | 'MESSAGE',
     prompt: string,
     reply?: string
-) => {
-
+  ) => {
     await onCurrentUser()
-
     try {
-
-    const create = await addListener(automationId, listener, prompt, reply)
+      await addListener(autmationId, listener, prompt, reply)
+      return { status: 200, data: 'Listener created' }
 
     } catch (error) {
-        return { status: 500, data: "Internal server error" }
+      return { status: 500, data: 'Oops! something went wrong' }
     }
-}
+  }
