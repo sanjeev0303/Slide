@@ -8,6 +8,9 @@ import {
 import { useMutationData } from "../mutation-data";
 import { useEffect, useRef, useState } from "react";
 import useZodForm from "../use-zod-form";
+import { AppDispatch, useAppSelector } from "@/redux/store";
+import { useDispatch } from "react-redux";
+import { TRIGGER } from "@/redux/slices/automation";
 
 export const useCreateAutomation = (id?: string) => {
   const { isPending, mutate } = useMutationData(
@@ -74,7 +77,7 @@ export const useListener = (id: string) => {
   const { isPending, mutate } = useMutationData(
     ["create-listener"],
     (data: { prompt: string; reply: string }) =>
-      saveListener(id, listener || 'MESSAGE', data.prompt, data.reply),
+      saveListener(id, listener || "MESSAGE", data.prompt, data.reply),
     "automation-info"
   );
 
@@ -83,13 +86,30 @@ export const useListener = (id: string) => {
     mutate
   );
 
-  const onSetListener = (type: 'SMARTAI' | 'MESSAGE') => setListener(type)
+  const onSetListener = (type: "SMARTAI" | "MESSAGE") => setListener(type);
 
   return {
     onSetListener,
     register,
     onFormSubmit,
     listener,
-    isPending
-  }
+    isPending,
+  };
+};
+
+export const useTriggers = (id: string) => {
+  const types = useAppSelector(
+    (state) => state.AutomationReducer.trigger?.types
+  );
+
+  const dispatch: AppDispatch = useDispatch();
+
+  const onSetTrigger = (type: "COMMENT" | "DM") =>
+    dispatch(TRIGGER({ trigger: { type } }));
+
+  const { isPending, mutate } = useMutationData(['add-trigger'],
+    (data: { type: string[] }) => saveTrigger(),
+  )
+
+  const onSaveTrigger = ()=> mutate({ types })
 };
