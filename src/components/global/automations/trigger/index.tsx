@@ -14,7 +14,7 @@ type TriggerProps = {
 const Trigger = ({ id }: TriggerProps) => {
   const { data } = useQueryAutomation(id);
 
-  //   if (data?.data && typeof data.data !== 'string' && data.data.trigger.length > 0) {
+    if (data?.data && typeof data.data !== 'string' && data.data.trigger.length > 0) {
   return (
     <div className="flex flex-col gap-y-6 items-center">
       <ActiveTrigger
@@ -27,7 +27,7 @@ const Trigger = ({ id }: TriggerProps) => {
           },
         ]}
       />
-      {/* {data?.data?.trigger.length > 1 && <></>} */}
+      {data?.data?.trigger.length > 1 && <></>}
       <>
         <div className="relative w-6/12 mt-4">
           <p className="absolute transform  px-2 -translate-y-1/2 top-1/2 -translate-x-1/2 left-1/2">
@@ -53,6 +53,6 @@ const Trigger = ({ id }: TriggerProps) => {
     </div>
   );
 };
-// }
+}
 
 export default Trigger;

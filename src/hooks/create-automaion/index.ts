@@ -64,7 +64,7 @@ export const useEditAutomation = (automationId: string) => {
 };
 
 export const useListener = (id: string) => {
-  const [listener, setListener] = useState<"MESSAGE" | "SMARTAI">("MESSAGE");
+  const [listener, setListener] = useState<"MESSAGE" | "SMARTAI" | null>(null);
 
   const promptSchema = z.object({
     prompt: z.string().min(1),
@@ -74,7 +74,7 @@ export const useListener = (id: string) => {
   const { isPending, mutate } = useMutationData(
     ["create-listener"],
     (data: { prompt: string; reply: string }) =>
-      saveListener(id, listener, data.prompt, data.reply),
+      saveListener(id, listener || 'MESSAGE', data.prompt, data.reply),
     "automation-info"
   );
 
