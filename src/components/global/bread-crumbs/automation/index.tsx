@@ -1,3 +1,5 @@
+"use client"
+
 import { PencilDuoToneBlack } from "@/icons";
 import { ChevronRight, PencilIcon } from "lucide-react";
 import React from "react";
@@ -10,7 +12,9 @@ type AutomationsBreadCrumbProps = {
 
 const AutomationsBreadCrumb = ({ id }: AutomationsBreadCrumbProps) => {
   // WIP: get the Automation data
-  const {} = useQueryAutomation(id)
+  const { data } = useQueryAutomation(id)
+
+  const {  } = useEditAutomation(id)
 
   return (
     <div className="rounded-full w-full p-5 bg-[#18181B1A] flex justify-between items-center">
