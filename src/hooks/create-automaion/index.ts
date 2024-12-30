@@ -14,6 +14,7 @@ import useZodForm from "../use-zod-form";
 import { AppDispatch, useAppSelector } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import { TRIGGER } from "@/redux/slices/automation";
+import { dataTagErrorSymbol } from "@tanstack/react-query";
 
 export const useCreateAutomation = (id?: string) => {
   const { isPending, mutate } = useMutationData(
@@ -101,62 +102,47 @@ export const useListener = (id: string) => {
 };
 
 export const useTriggers = (id: string) => {
-  const types = useAppSelector(
-    (state) => state.AutomationReducer.trigger?.types
-  );
+    const types = useAppSelector((state) => state.AutomationReducer.trigger?.types)
 
-  const dispatch: AppDispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch()
 
-  const onSetTrigger = (type: "COMMENT" | "DM") =>
-    dispatch(TRIGGER({ trigger: { type } }));
+    const onSetTrigger = (type: 'COMMENT' | 'DM') =>
+      dispatch(TRIGGER({ trigger: { type } }))
 
-  const { isPending, mutate } = useMutationData(['add-trigger'],
-    (data: { type: string[] }) => saveTrigger(id, data.type),
-    'automation-info'
-  )
+    const { isPending, mutate } = useMutationData(
+      ['add-trigger'],
+      (data: { types: string[] }) => saveTrigger(id, data.types),
+      'automation-info'
+    )
 
-  const onSaveTrigger = ()=> mutate({ types })
-
-  return {
-    types,
-    onSetTrigger,
-    onSaveTrigger,
-    isPending,
+    const onSaveTrigger = () => mutate({ types })
+    return { types, onSetTrigger, onSaveTrigger, isPending }
   }
-};
 
+  export const useKeywords = (id: string) => {
+    const [keyword, setKeyword] = useState('')
+    const onValueChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+      setKeyword(e.target.value)
 
+    const { mutate } = useMutationData(
+      ['add-keyword'],
+      (data: { keyword: string }) => saveKeyword(id, data.keyword),
+      'automation-info',
+      () => setKeyword('')
+    )
 
-export const useKeywords = (id: string) => {
-const [keyword, setKeyword] = useState("")
-const onValueChange = (e:React.ChangeEvent<HTMLInputElement>
-) => setKeyword(e.target.value)
-
-const {mutate} = useMutationData(['add-keyword'],
-    (data: {keyword: string}) => saveKeyword(id, data.keyword),
-    'automation-info',
-    () => setKeyword("")
-)
-
-const onKeyPress = (e:React.KeyboardEvent<HTMLInputElement>
-) => {
-    if(e.key === 'Enter') {
-        mutate({keyword})
-        setKeyword("")
+    const onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === 'Enter') {
+        mutate({ keyword })
+        setKeyword('')
+      }
     }
-}
 
-const { mutate: deleteMutation } = useMutationData(
-    ['delete-keyword'],
-    (data: {id: string}) => deleteKeyword(data.id),
-    'automation-info'
-)
+    const { mutate: deleteMutation } = useMutationData(
+      ['delete-keyword'],
+      (data: { id: string }) => deleteKeyword(data.id),
+      'automation-info'
+    )
 
-return {
-    keyword,
-    onValueChange,
-    onKeyPress,
-    deleteMutation,
-}
-
-}
+    return { keyword, onValueChange, onKeyPress, deleteMutation }
+  }

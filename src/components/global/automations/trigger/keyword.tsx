@@ -18,6 +18,9 @@ const Keywords = ({ id }: KeywordsProps) => {
   const { latestVariable } = useMutationDataState(["add-keyword"]);
   const { data } = useQueryAutomation(id);
 
+//   console.log("latestVariable: ", latestVariable);
+
+
   return (
     <div className="bg-background-80 flex flex-col gap-y-3 p-3 rounded-xl">
       <p className="text-sm text-text-secondary">
@@ -29,7 +32,7 @@ const Keywords = ({ id }: KeywordsProps) => {
           data?.data?.keywords.length > 0 &&
           data?.data?.keywords.map(
             (word) =>
-              word.id !== latestVariable.variables.id && (
+            //   word.id !== latestVariable.variables.id && (
                 <div
                   key={word.id}
                   className="bg-background-90 flex items-center gap-x-2 capitalize text-text-secondary py-1 px-4 rounded-full"
@@ -40,7 +43,7 @@ const Keywords = ({ id }: KeywordsProps) => {
                     onClick={() => deleteMutation({ id: word.id })}
                   />
                 </div>
-              )
+            //   )
           )}
         {latestVariable && latestVariable.status === "pending" && (
           <div className="bg-background-90 flex items-center gap-x-2 capitalize text-text-secondary py-1 px-4 rounded-full">
@@ -50,7 +53,7 @@ const Keywords = ({ id }: KeywordsProps) => {
 
         <Input
           placeholder="Add keyword..."
-          
+
           value={keyword}
           className="p-0 bg-transparent ring-0 border-none outline-none"
           onChange={onValueChange}

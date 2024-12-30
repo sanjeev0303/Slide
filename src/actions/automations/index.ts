@@ -91,13 +91,15 @@ export const saveListener = async (
 
 
   export const saveTrigger = async (automationId: string, trigger: string[]) => {
-    await onCurrentUser()
+   await onCurrentUser()
     try {
-
         const create = await addTrigger(automationId, trigger)
+
         if (create) return { status: 200, data: 'Trigger saved', res: create };
 
-        return { status: 404, data: 'Cannot save trigger' };
+        if (!automationId || !Array.isArray(trigger) || trigger.length === 0) {
+            return { status: 400, data: 'Invalid input parameters' };
+          }
 
     } catch (error) {
         return { status: 500, data: 'Oops! something went wrong' }
