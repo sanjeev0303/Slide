@@ -11,9 +11,7 @@ type SlugLayoutProps = {
 };
 
 const SlugLayout = async ({ children, params }: SlugLayoutProps) => {
-  //Query
-  // WIP: Query client fetch data
-
+  
   const query = new QueryClient()
 
   await PrefetchUserProfile(query)

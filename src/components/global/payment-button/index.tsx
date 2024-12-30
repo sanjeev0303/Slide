@@ -1,20 +1,28 @@
-"use client"
+import { Button } from '@/components/ui/button'
+import { useSubscription } from '@/hooks/subscription'
+import { CreditCardIcon, Loader2 } from 'lucide-react'
+import React from 'react'
 
-import { Button } from "@/components/ui/button";
-import { useSubscription } from "@/hooks/subscription";
-import React from "react";
-
-type Props = {};
+type Props = {}
 
 const PaymentButton = (props: Props) => {
-  // WIP: get their subscription details
-  const {} = useSubscription()
-
+  const { onSubscribe, isProcessing } = useSubscription()
   return (
-    <Button className="bg-gradient-to-br text-white rounded-full from-[#9685DB] via-[#9434E6] font-bold to-[#CC3BD4]">
+    <Button
+      disabled={isProcessing}
+      onClick={onSubscribe}
+      className="bg-gradient-to-br
+     text-white
+     rounded-full
+    from-[#6d60a3]
+    via-[#9434E6]
+    font-bold
+    to-[#CC3BD4]"
+    >
+      {isProcessing ? <Loader2 className="animate-spin" /> : <CreditCardIcon />}
       Upgrade
     </Button>
-  );
-};
+  )
+}
 
-export default PaymentButton;
+export default PaymentButton

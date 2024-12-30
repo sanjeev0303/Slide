@@ -1,22 +1,14 @@
-import { useQueryUser } from '@/hooks/user-queries'
-import React from 'react'
+import { useQueryUser } from "@/hooks/user-queries";
+import React from "react";
 
 type SubscriptionPlanProps = {
-    children: React.ReactNode
-    type: 'FREE' | 'PRO'
-}
+  children: React.ReactNode;
+  type: "FREE" | "PRO";
+};
 
 const SubscriptionPlan = ({ children, type }: SubscriptionPlanProps) => {
+    const { data } = useQueryUser()
+    return data?.data?.subscription?.plan === type && children
+};
 
-    const {
-        data
-    } = useQueryUser()
-
-    // WIP: Return subscription of user
-
-  return (
-    data?.data?.subscription?.plan === type && children
-  )
-}
-
-export default SubscriptionPlan
+export default SubscriptionPlan;

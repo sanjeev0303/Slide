@@ -6,7 +6,6 @@ import React from "react";
 import Items from "./items";
 import { Separator } from "@/components/ui/separator";
 import { HelpDuoToneWhite } from "@/icons";
-import ClerkAuthState from "../clerk-auth-state";
 import { UserButton } from "@clerk/nextjs";
 import SubscriptionPlan from "../subscription-plan";
 import UpgradeCard from "./upgrade";
@@ -35,7 +34,7 @@ const Sidebar = ({ slug }: SidebarProps) => {
             />
         </div>
         <div className="px-3 flex gap-x-3">
-            {/* <ClerkAuthState /> */}
+
             <UserButton />
         <p className="text-[#9B9CA0]">Profile</p>
         </div>
