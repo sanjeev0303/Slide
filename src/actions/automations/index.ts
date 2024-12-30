@@ -8,6 +8,7 @@ import {
   createAutomation,
   findAutomation,
   getAutomations,
+  removeKeyword,
   updateAutomation,
 } from "./queries";
 
@@ -112,6 +113,19 @@ export const saveListener = async (
         if (create) return { status: 200, data: 'Keyword added successfully', res: create };
 
         return { status: 404, data: 'Cannot add keyword' };
+    } catch (error) {
+        return { status: 500, data: 'Oops! something went wrong' }
+    }
+  }
+
+  export const deleteKeyword = async (id: string) => {
+    await onCurrentUser()
+    try {
+        const deleted = await removeKeyword(id)
+
+        if (deleted) return { status: 200, data: 'Keyword deleted', res: deleted };
+
+        return { status: 404, data: 'Keyword not found'}
     } catch (error) {
         return { status: 500, data: 'Oops! something went wrong' }
     }

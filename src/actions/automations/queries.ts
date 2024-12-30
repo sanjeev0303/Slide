@@ -2,6 +2,7 @@
 
 import { client } from "@/lib/prisma";
 import { v4 } from "uuid";
+import { onCurrentUser } from "../user";
 
 export const createAutomation = async (clerkId: string, id?: string) => {
   return await client.user.update({
@@ -136,5 +137,12 @@ return await client.automation.update({
             }
         }
     }
+})
+}
+
+
+export const removeKeyword = async (id: string) => {
+return await client.keyword.delete({
+    where: {id}
 })
 }

@@ -140,8 +140,15 @@ const {mutate} = useMutationData(['add-keyword'],
 const onKeyPress = (e:React.KeyboardEvent<HTMLInputElement>
 ) => {
     if(e.key === 'Enter') {
-
+        mutate({keyword})
+        setKeyword("")
     }
 }
+
+const { mutate: deleteMutation } = useMutationData(
+    ['delete-keyword'],
+    (data: {id: string}) => deleteKeyword(data.id),
+    'automation-info'
+)
 
 }
