@@ -2,6 +2,7 @@
 import { z } from "zod";
 import {
   createAutomations,
+  saveKeyword,
   saveListener,
   saveTrigger,
   updateAutomationName,

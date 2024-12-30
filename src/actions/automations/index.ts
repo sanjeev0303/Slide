@@ -2,6 +2,7 @@
 
 import { onCurrentUser } from "../user";
 import {
+    addKeyword,
     addListener,
   addTrigger,
   createAutomation,
