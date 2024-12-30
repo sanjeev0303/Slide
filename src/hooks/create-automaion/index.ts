@@ -152,4 +152,11 @@ const { mutate: deleteMutation } = useMutationData(
     'automation-info'
 )
 
+return {
+    keyword,
+    onValueChange,
+    onKeyPress,
+    deleteMutation,
+}
+
 }

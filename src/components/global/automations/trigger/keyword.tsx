@@ -7,7 +7,12 @@ type KeywordsProps = {
 
 const Keywords = ({ id }: KeywordsProps) => {
 
-    const {} = useKeywords(id)
+    const {
+        keyword,
+        onValueChange,
+        onKeyPress,
+        deleteMutation,
+    } = useKeywords(id)
 
   return (
     <div>Keywords</div>
