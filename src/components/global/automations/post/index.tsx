@@ -1,3 +1,4 @@
+import { useQueryAutomationPosts } from '@/hooks/user-queries'
 import React from 'react'
 
 type Props = {
@@ -5,6 +6,9 @@ type Props = {
 }
 
 const PostButton = ({ id }: Props) => {
+
+    const {} = useQueryAutomationPosts()
+
   return (
     <></>
   )

@@ -25,3 +25,10 @@ export const useQueryAutomations = () => {
         queryFn: onUserInfo
     })
   }
+
+
+  export const useQueryAutomationPosts = () => {
+
+    const fetchPosts = async () => await getProfilePosts()
+
+  }
