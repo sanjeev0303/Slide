@@ -124,3 +124,17 @@ export const addTrigger = async (
         }
     })
 }
+
+
+export const addKeyword = async (automationId: string, keyword: string) => {
+return await client.automation.update({
+    where: {id: automationId},
+    data: {
+        keywords: {
+            create: {
+                word: keyword
+            }
+        }
+    }
+})
+}

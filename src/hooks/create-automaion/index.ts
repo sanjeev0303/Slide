@@ -7,7 +7,7 @@ import {
   updateAutomationName,
 } from "@/actions/automations";
 import { useMutationData } from "../mutation-data";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import useZodForm from "../use-zod-form";
 import { AppDispatch, useAppSelector } from "@/redux/store";
 import { useDispatch } from "react-redux";
@@ -122,3 +122,25 @@ export const useTriggers = (id: string) => {
     isPending,
   }
 };
+
+
+
+export const useKeywords = (id: string) => {
+const [keyword, setKeyword] = useState("")
+const onValueChange = (e:React.ChangeEvent<HTMLInputElement>
+) => setKeyword(e.target.value)
+
+const {mutate} = useMutationData(['add-keyword'],
+    (data: {keyword: string}) => saveKeyword(id, data.keyword),
+    'automation-info',
+    () => setKeyword("")
+)
+
+const onKeyPress = (e:React.KeyboardEvent<HTMLInputElement>
+) => {
+    if(e.key === 'Enter') {
+
+    }
+}
+
+}

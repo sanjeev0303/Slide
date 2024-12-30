@@ -101,3 +101,17 @@ export const saveListener = async (
         return { status: 500, data: 'Oops! something went wrong' }
     }
   }
+
+
+  export const saveKeyword = async (automationId: string, keyword: string) => {
+    await onCurrentUser()
+    try {
+        const create = await addKeyword(automationId, keyword)
+
+        if (create) return { status: 200, data: 'Keyword added successfully', res: create };
+
+        return { status: 404, data: 'Cannot add keyword' };
+    } catch (error) {
+        return { status: 500, data: 'Oops! something went wrong' }
+    }
+  }

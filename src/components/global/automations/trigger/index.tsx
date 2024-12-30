@@ -9,6 +9,8 @@ import ThenAction from "../then/then-action";
 import TriggerButton from "../tirgger-button";
 import { AUTOMATION_TRIGGERS } from "@/constants/automation";
 import { useTriggers } from "@/hooks/create-automaion";
+import { cn } from "@/lib/utils";
+import Keywords from "./keyword";
 
 type TriggerProps = {
   id: string;
@@ -17,12 +19,7 @@ type TriggerProps = {
 const Trigger = ({ id }: TriggerProps) => {
   const { data } = useQueryAutomation(id);
 
-  const {
-    types,
-    onSetTrigger,
-    onSaveTrigger,
-    isPending,
-  } = useTriggers(id)
+  const { types, onSetTrigger, onSaveTrigger, isPending } = useTriggers(id);
 
   if (
     data?.data &&
@@ -54,19 +51,36 @@ const Trigger = ({ id }: TriggerProps) => {
           </>
         )}
 
-        { !data.data.listener && <ThenAction id={id} /> }
+        {!data.data.listener && <ThenAction id={id} />}
       </div>
     );
   }
-  return <TriggerButton label="Add Trigger">
-<div className="flex flex-col gap-y-2">
-{AUTOMATION_TRIGGERS.map((trigger) => (
-    <div key={trigger.id}
-    onClick={() => onSetTrigger(trigger.type)}
-    ></div>
-))}
-</div>
-  </TriggerButton>
+  return (
+    <TriggerButton label="Add Trigger">
+      <div className="flex flex-col gap-y-2">
+        {AUTOMATION_TRIGGERS.map((trigger) => (
+          <div
+            key={trigger.id}
+            onClick={() => onSetTrigger(trigger.type)}
+            className={cn(
+              "hover:opacity-80 text-white rounded-xl flex cursor-pointer flex-col p-3 gap-y-2",
+              !types?.find((t) => t === trigger.type)
+                ? "bg-background-80"
+                : "bg-gradient-to-br from-[#3352CC] font-medium to-[#1C2D70]"
+            )}
+          >
+            <div className="flex gap-x-2 items-center">
+              {trigger.icon}
+              <p className="font-bold">{trigger.label}</p>
+            </div>
+            <p className="text-sm font-light">{trigger.description}</p>
+          </div>
+        ))}
+
+        <Keywords id={id} />
+      </div>
+    </TriggerButton>
+  );
 };
 
 export default Trigger;
